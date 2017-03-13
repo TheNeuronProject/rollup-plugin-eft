@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-eft",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "eft loader for rollup",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/ClassicOldSong/rollup-plugin-eft#readme",
   "dependencies": {
+    "ef.js": "^0.1.0-alpha.2",
     "eft-parser": "^0.1.1",
     "rollup-pluginutils": "^2.0.1"
   },
