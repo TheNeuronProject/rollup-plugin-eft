@@ -1,0 +1,33 @@
+{
+  "name": "rollup-plugin-eft",
+  "version": "0.1.0",
+  "description": "eft loader for rollup",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext .js src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClassicOldSong/rollup-plugin-eft.git"
+  },
+  "keywords": [
+    "ef.js",
+    "template",
+    "rollup",
+    "eft",
+    "loader"
+  ],
+  "author": "ClassicOldSong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClassicOldSong/rollup-plugin-eft/issues"
+  },
+  "homepage": "https://github.com/ClassicOldSong/rollup-plugin-eft#readme",
+  "dependencies": {
+    "eft-parser": "^0.1.1",
+    "rollup-pluginutils": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1"
+  }
+}
