@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/ClassicOldSong/rollup-plugin-eft#readme",
   "dependencies": {
-    "ef.js": "^0.1.1-alpha.10",
+    "ef.js": "^0.1.1-alpha.11",
     "eft-parser": "^0.2.6",
     "rollup-pluginutils": "^2.0.1"
   },
