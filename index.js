@@ -7,7 +7,7 @@ export default new ef(__AST__)
 `
 
 module.exports = (options = {}) => {
-	const { include = ['*.eft', '**/*.eft'], exclude } = options
+	const { include = ['**/*.ef', '**/*.eft'], exclude } = options
 	const filter = createFilter(include, exclude)
 
 	return {
