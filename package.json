@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-eft",
-  "version": "0.1.43",
+  "version": "0.1.44",
   "description": "eft loader for rollup",
   "main": "index.js",
   "scripts": {
