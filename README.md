@@ -5,8 +5,8 @@
 
 
 ``` javascript
-import module from 'some_module.eft'
-const component = module.render()
+import Component from 'some_module.eft'
+const component = new Component(options)
 ```
 
 ## Install
