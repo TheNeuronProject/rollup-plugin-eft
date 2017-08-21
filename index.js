@@ -2,7 +2,7 @@ const parse = require('eft-parser')
 const createFilter = require('rollup-pluginutils').createFilter
 
 const codeTemplate = `
-import { create } from 'ef.js'
+import { create } from 'ef-core'
 export default create(__AST__)
 `
 
