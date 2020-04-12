@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-eft",
-  "version": "0.3.0",
+  "version": "0.10.6",
   "description": "eft loader for rollup",
   "main": "index.js",
   "scripts": {
@@ -26,13 +26,13 @@
   },
   "homepage": "https://github.com/TheNeuronProject/rollup-plugin-eft#readme",
   "dependencies": {
-    "rollup-pluginutils": "^2.0.1"
+    "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
-    "ef-core": ">=0.6.0-beta.1",
-    "eft-parser": ">=0.6.0"
+    "ef-core": ">=0.10.6",
+    "eft-parser": ">=0.10.6"
   },
   "devDependencies": {
-    "eslint": "^4.14.0"
+    "eslint": "^6.8.0"
   }
 }
