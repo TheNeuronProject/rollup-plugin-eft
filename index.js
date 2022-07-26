@@ -37,7 +37,7 @@ export default (options = {}) => {
 						break
 					}
 					case 'name': {
-						componentName = splitedContent.join('_')
+						componentName = camelCase(splitedContent.join('_'), {pascalCase: true})
 						break
 					}
 					default: {
