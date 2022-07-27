@@ -14,7 +14,8 @@ export default (options = {}) => {
 
 			const fileName = path.parse(id).name
 
-			const imports = []
+			const importLines = []
+			const exportLines = []
 			let componentName = camelCase(fileName, {pascalCase: true})
 			let componentScope = null
 
@@ -29,7 +30,11 @@ export default (options = {}) => {
 
 				switch (directive) {
 					case 'import': {
-						imports.push(content)
+						importLines.push(content)
+						break
+					}
+					case 'export': {
+						exportLines.push(content)
 						break
 					}
 					case 'scope': {
@@ -50,9 +55,10 @@ export default (options = {}) => {
 			const ast = JSON.stringify(JSON.stringify(parse(template, commentHandler)))
 
 			const code = [
-				...imports,
+				...importLines,
 				componentScope && `import { create, scoped } from 'ef-core'` || `import { create } from 'ef-core'`,
 				componentScope && `export default class ${componentName} extends scoped(create(JSON.parse(${ast})), ${componentScope}) {}` || `export default class ${componentName} extends create(JSON.parse(${ast})) {}`,
+				...exportLines,
 				''
 			].join(';\n')
 
