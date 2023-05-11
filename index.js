@@ -1,10 +1,11 @@
 import path from 'path'
 import parse from 'eft-parser'
+import JSON5 from 'json5'
 import camelCase from 'camelcase'
 import {createFilter} from 'rollup-pluginutils'
 
 export default (options = {}) => {
-	const { include = ['**/*.ef', '**/*.eft', '**/*.efml'], exclude } = options
+	const { include = ['**/*.ef', '**/*.eft', '**/*.efml'], exclude, useJSONParse } = options
 	const filter = createFilter(include, exclude)
 
 	return {
@@ -18,6 +19,8 @@ export default (options = {}) => {
 			const exportLines = []
 			let componentName = camelCase(fileName, {pascalCase: true})
 			let componentScope = null
+			let componentData = null
+			let componentMethods = null
 
 			const commentHandler = ({depth, content}) => {
 				if (depth > 0) return
@@ -45,6 +48,14 @@ export default (options = {}) => {
 						componentName = camelCase(splitedContent.join('_'), {pascalCase: true})
 						break
 					}
+					case 'data': {
+						componentData = content.match(/{.+}/)
+						break
+					}
+					case 'methods': {
+						componentMethods = content.match(/{.+}/)
+						break
+					}
 					default: {
 						throw new TypeError(`[EFML] Unknown directive "${directive}"`)
 					}
@@ -52,12 +63,28 @@ export default (options = {}) => {
 
 			}
 
-			const ast = JSON.stringify(JSON.stringify(parse(template, commentHandler)))
+			let ast = parse(template, commentHandler)
+
+			if (useJSONParse) {
+				ast = JSON.stringify(JSON.stringify(ast))
+			} else {
+				ast = JSON5.stringify(ast)
+			}
 
 			const code = [
 				...importLines,
-				componentScope && `import { create, scoped } from 'ef-core'` || `import { create } from 'ef-core'`,
-				componentScope && `export default class ${componentName} extends scoped(create(JSON.parse(${ast})), ${componentScope}) {}` || `export default class ${componentName} extends create(JSON.parse(${ast})) {}`,
+				`import { create } from 'ef-core'`,
+				`export default class ${componentName} extends create(${useJSONParse && 'JSON.parse(' || ''}${ast}${useJSONParse && ')' || ''}) {${componentData && `
+	static initData() {
+		return ${componentData}
+	}` || ''}${componentMethods && `
+	static initMethods() {
+		return ${componentMethods}
+	}` || ''}${componentScope && `
+	static __defaultScope() {
+		return ${componentScope}
+	}` || ''}
+}`,
 				...exportLines,
 				''
 			].join(';\n')
