@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-eft",
-  "version": "0.16.5",
+  "version": "0.17.0",
   "description": "eft loader for rollup",
   "main": "index.js",
   "type": "module",
@@ -32,10 +32,10 @@
     "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
-    "ef-core": ">=0.16.4",
+    "ef-core": ">=0.17.0",
     "eft-parser": ">=0.16.5"
   },
   "devDependencies": {
-    "eslint": "^8.36.0"
+    "eslint": "^8.43.0"
   }
 }
